@@ -19,8 +19,8 @@ Different matrix size:
 
 ## TODO
 
-- [ ] Tests
-- [ ] Increase cell lifetime to survive more than one generation instead of killing instantly
+- [x] Tests
+- [x] Increase cell lifetime to survive more than one generation instead of killing instantly
 - [ ] Predefined seeds like Gosper's glider gun!
 
 ## Resources
