@@ -1,19 +1,20 @@
 <?php
 require 'vendor/autoload.php';
 
-use mikemix\GameOfLife;
+use mikemix\GameOfLife\{
+    Game, Renderer
+};
 
-$width = getenv('GAME_WIDTH') ?: 20;
-$height = getenv('GAME_HEIGHT') ?: $width * 2;
-$tickCount = getenv('TICK_COUNT') ?: 50;
+$height = getenv('GAME_HEIGHT') ?: 20;
+$width = getenv('GAME_WIDTH') ?: $height * 3;
+$tickCount = getenv('TICK_COUNT') ?: 100;
 
-$universe = GameOfLife\Universe::createWithRandomSeed($width, $height);
+$matrix = new Game\RandomMatrix($width, $height, 2);
+$universe = new Game\Universe($matrix);
+$renderer = new Renderer\Cli();
 
-$renderer = new GameOfLife\Renderer\Cli();
-$renderer->render($universe);
-
-for ($i = 0; $i < $tickCount; $i++) {
-    usleep(500000);
+for ($tick = 1; $tick <= $tickCount; $tick++) {
+    usleep(50000);
     $universe = $universe->tick();
-    $renderer->render($universe);
+    $renderer->render($universe->getContext($tickCount));
 }

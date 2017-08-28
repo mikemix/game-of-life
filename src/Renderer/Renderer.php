@@ -2,9 +2,9 @@
 
 namespace mikemix\GameOfLife\Renderer;
 
-use mikemix\GameOfLife\Universe;
+use mikemix\GameOfLife\Game\GenerationContext;
 
 interface Renderer
 {
-    public function render(Universe $universe);
+    public function render(GenerationContext $context);
 }

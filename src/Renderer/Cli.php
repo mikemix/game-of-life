@@ -2,37 +2,40 @@
 
 namespace mikemix\GameOfLife\Renderer;
 
-use mikemix\GameOfLife\Universe;
+use mikemix\GameOfLife\Game\GenerationContext;
 
 final class Cli implements Renderer
 {
-    public function render(Universe $universe)
+    public function render(GenerationContext $context)
     {
-        $visualization = $universe->getVisualization();
+        $cells = $context->getCells();
+        $maxWidth = array_reduce($cells, function ($max, $current) {
+            return $max > count($current) ? $max : count($current);
+        }, 0);
 
-        printf("\nGeneration %d\n", $visualization->getGeneration());
-        printf(" %s\n", str_repeat('_', $visualization->getHeight()));
+        printf("Generation %d / %d\n", $context->getIteration(), $context->getIterationCount());
+        printf(" %s\n", str_repeat('_', $maxWidth));
 
-        foreach ($visualization->getCells() as $cellX) {
+        $isDead = true;
+        foreach ($cells as $x => $cellY) {
             echo '|';
-
-            foreach ($cellX as $cellY) {
-                echo $cellY ? 'x' : ' ';
+            foreach ($cellY as $y => $cellX) {
+                if ($cells[$x][$y] > 0) {
+                    $isDead = false;
+                    echo $cells[$x][$y];
+                } else {
+                    echo ' ';
+                }
             }
 
+            echo str_repeat(' ', ($maxWidth - count($cellY)));
             echo '|' , PHP_EOL;
         }
 
-        printf(" %s\n", str_repeat('-', $visualization->getHeight()));
+        printf(" %s\n", str_repeat('-', $maxWidth));
 
-        foreach ($visualization->getCells() as $cellX) {
-            foreach ($cellX as $cellY) {
-                if ($cellY) {
-                    return;
-                }
-            }
+        if ($isDead) {
+            die(sprintf("Universe is dead at generation %d\n", $context->getIteration()));
         }
-
-        die(sprintf("Universe is dead at generation %d\n", $visualization->getGeneration()));
     }
 }

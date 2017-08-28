@@ -13,6 +13,10 @@ Different matrix size:
 
 `docker run --rm -v $PWD:/app -e GAME_WIDTH=10 -e GAME_HEIGHT=20 composer/composer start`
 
+## Running test suite
+
+`docker run --rm -v $PWD:/app composer/composer tests`
+
 ## TODO
 
 1. Tests
