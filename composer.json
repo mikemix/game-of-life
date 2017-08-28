@@ -17,11 +17,11 @@
   },
   "scripts": {
     "start": [
-      "@composer dump",
+      "@composer dump -o -a -n --no-dev",
       "php play.php"
     ],
     "tests": [
-      "@composer install",
+      "@composer install -o -a -n --prefer-dist",
       "vendor/bin/phpunit"
     ]
   }
