@@ -3,7 +3,6 @@
 namespace mikemix\GameOfLife;
 
 use mikemix\GameOfLife\Game\Matrix;
-use mikemix\GameOfLife\Game\MatrixDto;
 
 final class Universe
 {
@@ -29,17 +28,17 @@ final class Universe
         return new self($width, $height, Matrix::random($width, $height), 1);
     }
 
-    public function getVisualization(): MatrixDto
+    public function getVisualization(): Visualization
     {
-        $dto = [];
+        $matrix = [];
 
         for ($x = 0; $x < $this->width; $x++) {
             for ($y = 0; $y < $this->height; $y++) {
-                $dto[$x][$y] = $this->matrix->isCellAlive($x, $y);
+                $matrix[$x][$y] = $this->matrix->isCellAlive($x, $y);
             }
         }
 
-        return new MatrixDto($this->generation, $this->width, $this->height, $dto);
+        return new Visualization($this->generation, $this->width, $this->height, $matrix);
     }
 
     public function tick(): Universe

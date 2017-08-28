@@ -2,9 +2,9 @@
 
 namespace mikemix\GameOfLife\Renderer;
 
-use mikemix\GameOfLife\Game\MatrixDto;
+use mikemix\GameOfLife\Universe;
 
 interface Renderer
 {
-    public function render(MatrixDto $dto);
+    public function render(Universe $universe);
 }

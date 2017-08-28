@@ -1,20 +1,14 @@
 <?php
 
-namespace mikemix\GameOfLife\Game;
+namespace mikemix\GameOfLife;
 
-final class MatrixDto
+final class Visualization
 {
     private $generation;
     private $width;
     private $height;
     private $cells;
 
-    /**
-     * @param int      $generation
-     * @param int      $width
-     * @param int      $height
-     * @param bool[][] $cells
-     */
     public function __construct(int $generation, int $width, int $height, array $cells)
     {
         $this->generation = $generation;
@@ -23,6 +17,9 @@ final class MatrixDto
         $this->cells = $cells;
     }
 
+    /**
+     * @return bool[][]
+     */
     public function getCells(): array
     {
         return $this->cells;

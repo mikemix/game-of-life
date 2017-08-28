@@ -2,16 +2,18 @@
 
 namespace mikemix\GameOfLife\Renderer;
 
-use mikemix\GameOfLife\Game\MatrixDto;
+use mikemix\GameOfLife\Universe;
 
 final class Cli implements Renderer
 {
-    public function render(MatrixDto $dto)
+    public function render(Universe $universe)
     {
-        printf("\nGeneration %d\n", $dto->getGeneration());
-        printf(" %s\n", str_repeat('_', $dto->getHeight()));
+        $visualization = $universe->getVisualization();
 
-        foreach ($dto->getCells() as $cellX) {
+        printf("\nGeneration %d\n", $visualization->getGeneration());
+        printf(" %s\n", str_repeat('_', $visualization->getHeight()));
+
+        foreach ($visualization->getCells() as $cellX) {
             echo '|';
 
             foreach ($cellX as $cellY) {
@@ -21,9 +23,9 @@ final class Cli implements Renderer
             echo '|' , PHP_EOL;
         }
 
-        printf(" %s\n", str_repeat('-', $dto->getHeight()));
+        printf(" %s\n", str_repeat('-', $visualization->getHeight()));
 
-        foreach ($dto->getCells() as $cellX) {
+        foreach ($visualization->getCells() as $cellX) {
             foreach ($cellX as $cellY) {
                 if ($cellY) {
                     return;
@@ -31,6 +33,6 @@ final class Cli implements Renderer
             }
         }
 
-        die(sprintf("Universe is dead at generation %d\n", $dto->getGeneration()));
+        die(sprintf("Universe is dead at generation %d\n", $visualization->getGeneration()));
     }
 }
