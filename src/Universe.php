@@ -14,6 +14,10 @@ final class Universe
 
     private function __construct(int $width, int $height, Matrix $matrix, int $generation)
     {
+        if ($width < 5 || $height < 5) {
+            throw new \InvalidArgumentException('At least 5x5 universe required');
+        }
+
         $this->width = $width;
         $this->height = $height;
         $this->matrix = $matrix;

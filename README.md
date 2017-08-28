@@ -9,6 +9,10 @@ In console:
 
 `docker run --rm -v $PWD:/app composer/composer start`
 
+Different matrix size:
+
+`docker run --rm -v $PWD:/app -e GAME_WIDTH=10 -e GAME_HEIGHT=20 composer/composer start`
+
 ## TODO
 
 1. Tests

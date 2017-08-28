@@ -11,6 +11,10 @@ final class Matrix
 
     public function __construct(int $width, int $height)
     {
+        if ($width < 5 || $height < 5) {
+            throw new \InvalidArgumentException('At least 5x5 matrix required');
+        }
+
         $this->width = $width;
         $this->height = $height;
 
