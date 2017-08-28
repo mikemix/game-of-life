@@ -1,0 +1,13 @@
+{
+  "autoload": {
+    "psr-4": {
+      "mikemix\\GameOfLife\\": "src/"
+    }
+  },
+  "scripts": {
+    "start": [
+      "@composer dump",
+      "php play.php"
+    ]
+  }
+}
