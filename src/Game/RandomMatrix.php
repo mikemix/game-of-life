@@ -16,7 +16,7 @@ final class RandomMatrix extends AbstractMatrix2D
         $cells = [];
         for ($x = 0; $x < $height; $x++) {
             for ($y = 0; $y < $width; $y++) {
-                $cells[$x][$y] = mt_rand(1, 10) < $this->probability ? Cell::alive() : Cell::dead();
+                $cells[$x][$y] = mt_rand(0, 9) < $this->probability ? Cell::alive() : Cell::dead();
             }
         }
 
