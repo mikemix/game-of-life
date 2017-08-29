@@ -12,9 +12,9 @@ final class MatrixAbstractFactory
     {
         switch ($game) {
             case 'random':
-                $height = getenv('MATRIX_HEIGHT') ?: 20;
-                $width = getenv('MATRIX_WIDTH') ?: $height * 3;
-                $probability = getenv('MATRIX_PROBABILITY') ?: 3;
+                $height = (int) getenv('MATRIX_HEIGHT') ?: 20;
+                $width = (int) getenv('MATRIX_WIDTH') ?: $height * 3;
+                $probability = (int) getenv('MATRIX_PROBABILITY') ?: 3;
 
                 return new RandomMatrix($width, $height, $probability);
             case 'glider_gun':
