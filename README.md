@@ -1,7 +1,9 @@
 Conway's Game of Life
 =====================
 
-![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/mikemix/game-of-life/badges/quality-score.png?b=master)
+![Build](https://scrutinizer-ci.com/g/mikemix/game-of-life/badges/build.png?b=master)
+![Code Quality](https://scrutinizer-ci.com/g/mikemix/game-of-life/badges/quality-score.png?b=master)
+![Coverage](https://scrutinizer-ci.com/g/mikemix/game-of-life/badges/coverage.png?b=master)
 
 Simple PHP implementation with CLI visualization.
 
