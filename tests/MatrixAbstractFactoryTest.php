@@ -26,4 +26,12 @@ final class MatrixAbstractFactoryTest extends TestCase
     {
         $this->assertInstanceOf(GliderGunMatrix::class, $this->factory->create('glider_gun'));
     }
+
+    /**
+     * @expectedException \InvalidArgumentException
+     */
+    public function testItThrowsExceptionOnInvalidMatrixName()
+    {
+        $this->factory->create(md5(uniqid()));
+    }
 }
