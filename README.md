@@ -9,9 +9,12 @@ In console:
 
 `docker run --rm -v $PWD:/app composer/composer start`
 
-Different matrix size:
+Different matrix setups:
 
-`docker run --rm -v $PWD:/app -e GAME_WIDTH=10 -e GAME_HEIGHT=20 composer/composer start`
+- Random matrix
+  `docker run --rm -v $PWD:/app -e MATRIX=random composer/composer start`
+- Glider gun
+  `docker run --rm -v $PWD:/app -e MATRIX=glider_gun composer/composer start`
 
 ## Running test suite
 
@@ -21,7 +24,8 @@ Different matrix size:
 
 - [x] Tests
 - [x] Increase cell lifetime to survive more than one generation instead of killing instantly
-- [ ] Predefined seeds like Gosper's glider gun!
+- [x] Predefined seeds like Gosper's glider gun!
+- [ ] Cell colors!
 
 ## Resources
 

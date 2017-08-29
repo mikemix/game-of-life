@@ -1,4 +1,7 @@
 {
+  "name": "mikemix/game-of-life",
+  "license": "MIT",
+  "type": "project",
   "autoload": {
     "psr-4": {
       "mikemix\\GameOfLife\\": "src/"

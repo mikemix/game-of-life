@@ -39,6 +39,24 @@ abstract class AbstractMatrix2D implements Matrix2D
         return $matrix;
     }
 
+    /**
+     * @param array $array
+     *
+     * @return Cell[][]
+     */
+    public static function bitArrayToCellArray(array $array): array
+    {
+        $matrix = [];
+
+        foreach ($array as $x => $bitX) {
+            foreach ($bitX as $y => $bitY) {
+                $matrix[$x][$y] = $bitY ? Cell::alive() : Cell::dead();
+            }
+        }
+
+        return $matrix;
+    }
+
     private function getAliveNeighborCount($x, $y): int
     {
         $n1 = $this->getOneIfCellAliveAt($x-1, $y-1);

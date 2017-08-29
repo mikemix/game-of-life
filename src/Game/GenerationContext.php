@@ -4,13 +4,13 @@ namespace mikemix\GameOfLife\Game;
 
 final class GenerationContext
 {
-    private $iteration;
+    private $generation;
     private $iterationCount;
     private $cells;
 
-    public function __construct(int $iteration, int $iterationCount, array $cells)
+    public function __construct(int $generation, int $iterationCount, array $cells)
     {
-        $this->iteration = $iteration;
+        $this->generation = $generation;
         $this->iterationCount = $iterationCount;
         $this->cells = $cells;
     }
@@ -23,9 +23,9 @@ final class GenerationContext
         return $this->cells;
     }
 
-    public function getIteration(): int
+    public function getGeneration(): int
     {
-        return $this->iteration;
+        return $this->generation;
     }
 
     public function getIterationCount(): int

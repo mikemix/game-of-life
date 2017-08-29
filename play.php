@@ -1,20 +1,22 @@
 <?php
 require 'vendor/autoload.php';
 
-use mikemix\GameOfLife\{
-    Game, Renderer
-};
+use mikemix\GameOfLife;
 
-$height = getenv('GAME_HEIGHT') ?: 20;
-$width = getenv('GAME_WIDTH') ?: $height * 3;
-$tickCount = getenv('TICK_COUNT') ?: 100;
+$matrix = getenv('MATRIX');
+if (empty($matrix)) {
+    echo 'Matrix name missing' , PHP_EOL;
+    exit(1);
+}
 
-$matrix = new Game\RandomMatrix($width, $height, 2);
-$universe = new Game\Universe($matrix);
-$renderer = new Renderer\Cli();
+$matrixFactory = new GameOfLife\MatrixAbstractFactory();
+$universe = new GameOfLife\Game\Universe($matrixFactory->create($matrix));
+$renderer = new GameOfLife\Renderer\Cli();
 
-for ($tick = 1; $tick <= $tickCount; $tick++) {
-    usleep(50000);
-    $universe = $universe->tick();
+$tickCount = getenv('TICK_COUNT') ?: 120;
+
+for ($tick = 0; $tick < $tickCount; $tick++) {
     $renderer->render($universe->getContext($tickCount));
+    $universe = $universe->tick();
+    usleep(90000);
 }

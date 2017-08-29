@@ -41,9 +41,10 @@ final class UniverseTest extends TestCase
     {
         $universe = new Universe($this->createMatrix([]));
         $universe = $universe->tick();
+        /** @var Universe $universe */
         $universe = $universe->tick();
 
-        $this->assertEquals(3, $universe->getContext(5)->getIteration());
+        $this->assertEquals(3, $universe->getContext(5)->getGeneration());
     }
 
     public function testGetContextReturnsImmutableContext()
