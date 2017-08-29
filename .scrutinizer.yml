@@ -14,5 +14,6 @@ checks:
 
 filter:
     excluded_paths:
+        - play.php
         - vendor/*
         - tests/*
