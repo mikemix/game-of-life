@@ -20,7 +20,7 @@ final class Universe
     public function tick(): Universe
     {
         $universe = new self($this->matrix->tick());
-        $universe->generation = $this->generation + 1;
+        $universe->generation = $this->generation+1;
 
         return $universe;
     }

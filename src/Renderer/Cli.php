@@ -12,7 +12,7 @@ final class Cli implements Renderer
     public function render(GenerationContext $context)
     {
         $cells = $context->getCells();
-        $maxWidth = array_reduce($cells, function ($max, $current) {
+        $maxWidth = array_reduce($cells, function($max, $current) {
             return $max > count($current) ? $max : count($current);
         }, 0);
 
@@ -31,8 +31,8 @@ final class Cli implements Renderer
                 }
             }
 
-            echo str_repeat(' ', ($maxWidth - count($cellY)));
-            echo self::BORDER_SYMBOL , PHP_EOL;
+            echo str_repeat(' ', ($maxWidth-count($cellY)));
+            echo self::BORDER_SYMBOL, PHP_EOL;
         }
 
         printf(" %s\n", str_repeat(self::BORDER_SYMBOL, $maxWidth));

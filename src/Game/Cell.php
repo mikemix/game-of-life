@@ -37,7 +37,7 @@ final class Cell
     public function tick(int $aliveNeighbors): self
     {
         if ($this->isAlive()) {
-            return new self(in_array($aliveNeighbors, [2, 3], true) ? $this->livesLeft : $this->livesLeft - 1);
+            return new self(in_array($aliveNeighbors, [2, 3], true) ? $this->livesLeft : $this->livesLeft-1);
         }
 
         return 3 === $aliveNeighbors ? self::alive() : self::dead();

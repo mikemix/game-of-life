@@ -76,7 +76,7 @@ abstract class AbstractMatrix2D implements Matrix2D
         $n7 = $this->getOneIfCellAliveAt($x+1, $y);
         $n8 = $this->getOneIfCellAliveAt($x+1, $y+1);
 
-        return $n1 + $n2 + $n3 + $n4 + $n5 + $n6 + $n7 + $n8;
+        return $n1+$n2+$n3+$n4+$n5+$n6+$n7+$n8;
     }
 
     private function getOneIfCellAliveAt($x, $y): int
