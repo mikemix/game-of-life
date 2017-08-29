@@ -14,15 +14,7 @@ final class Universe
 
     public function getContext(int $tickCount): GenerationContext
     {
-        $matrix = [];
-
-        foreach ($this->matrix->getCells() as $x => $cellY) {
-            foreach ($cellY as $y => $cellX) {
-                $matrix[$x][$y] = $this->matrix->getCellLivesLeft($x, $y);
-            }
-        }
-
-        return new GenerationContext($this->generation, $tickCount, $matrix);
+        return new GenerationContext($this->generation, $tickCount, $this->matrix->getCells());
     }
 
     public function tick(): Universe

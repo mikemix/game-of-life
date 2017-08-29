@@ -27,7 +27,7 @@ final class AbstractMatrixTest extends TestCase
             [Cell::dead(), Cell::alive()],
         ]);
 
-        $this->assertEquals($livesLeft, $matrix->getCellLivesLeft($x, $y));
+        $this->assertEquals($livesLeft, $matrix->isCellAlive($x, $y));
     }
 
     public function cellValuesProvider(): array
@@ -58,16 +58,29 @@ final class AbstractMatrixTest extends TestCase
 
         $tick = $seed->tick();
 
-        $this->assertEquals(Cell::DEFAULT_LIVES, $tick->getCellLivesLeft(0, 0));
-        $this->assertEquals(Cell::DEFAULT_LIVES, $tick->getCellLivesLeft(0, 1));
-        $this->assertEquals(0, $tick->getCellLivesLeft(0, 2));
+        $this->assertEquals(Cell::DEFAULT_LIVES, $tick->isCellAlive(0, 0));
+        $this->assertEquals(Cell::DEFAULT_LIVES, $tick->isCellAlive(0, 1));
+        $this->assertEquals(0, $tick->isCellAlive(0, 2));
 
-        $this->assertEquals(0, $tick->getCellLivesLeft(1, 0));
-        $this->assertEquals(0, $tick->getCellLivesLeft(1, 1));
-        $this->assertEquals(0, $tick->getCellLivesLeft(1, 2));
+        $this->assertEquals(0, $tick->isCellAlive(1, 0));
+        $this->assertEquals(0, $tick->isCellAlive(1, 1));
+        $this->assertEquals(0, $tick->isCellAlive(1, 2));
 
-        $this->assertEquals(Cell::DEFAULT_LIVES, $tick->getCellLivesLeft(2, 0));
-        $this->assertEquals(Cell::DEFAULT_LIVES, $tick->getCellLivesLeft(2, 1));
-        $this->assertEquals(0, $tick->getCellLivesLeft(2, 2));
+        $this->assertEquals(Cell::DEFAULT_LIVES, $tick->isCellAlive(2, 0));
+        $this->assertEquals(Cell::DEFAULT_LIVES, $tick->isCellAlive(2, 1));
+        $this->assertEquals(0, $tick->isCellAlive(2, 2));
+    }
+
+    public function testGetCells()
+    {
+        $matrix = $this->createMatrix([
+            [Cell::dead(), Cell::dead()],
+            [Cell::dead(), Cell::alive()],
+        ]);
+
+        $this->assertEquals([
+            [0, 0],
+            [0, 1],
+        ], $matrix->getCells());
     }
 }

@@ -13,16 +13,24 @@ abstract class AbstractMatrix2D implements Matrix2D
     }
 
     /**
-     * @return Cell[][]
+     * @return bool[][]
      */
     public function getCells(): array
     {
-        return $this->cells;
+        $matrix = [];
+
+        foreach ($this->cells as $x => $cellY) {
+            foreach ($cellY as $y => $cellX) {
+                $matrix[$x][$y] = $this->cells[$x][$y]->isAlive();
+            }
+        }
+
+        return $matrix;
     }
 
-    public function getCellLivesLeft(int $x, int $y): int
+    public function isCellAlive(int $x, int $y): bool
     {
-        return $this->cells[$x][$y]->getLivesLeft();
+        return $this->cells[$x][$y]->isAlive();
     }
 
     public function tick(): Matrix2D

@@ -7,23 +7,9 @@ use PHPUnit\Framework\TestCase;
 
 final class CellTest extends TestCase
 {
-    public function testAliveCreatesCellWithMaximumLivesLeft()
-    {
-        $cell = Cell::alive();
-
-        $this->assertEquals(Cell::DEFAULT_LIVES, $cell->getLivesLeft());
-    }
-
     public function testAliveCreatesAliveCell()
     {
         $this->assertTrue(Cell::alive()->isAlive());
-    }
-
-    public function testDeadCreatesCellWithNoLivesLeft()
-    {
-        $cell = Cell::dead();
-
-        $this->assertEquals(0, $cell->getLivesLeft());
     }
 
     public function testDeadCreatesDeadCell()
@@ -55,7 +41,7 @@ final class CellTest extends TestCase
         $newCell = $cell->tick(4);
 
         $this->assertNotSame($cell, $newCell);
-        $this->assertEquals($cell->getLivesLeft() - 1, $newCell->getLivesLeft());
+        $this->assertFalse($newCell->isAlive());
     }
 
     public function testTickOnAliveCellWithOneAliveNeighborCreatesDyingCopyOfUnderpopulation()
@@ -64,10 +50,10 @@ final class CellTest extends TestCase
         $newCell = $cell->tick(1);
 
         $this->assertNotSame($cell, $newCell);
-        $this->assertEquals($cell->getLivesLeft() - 1, $newCell->getLivesLeft());
+        $this->assertFalse($newCell->isAlive());
     }
 
-    public function testTickOnDeadCellWithThreeAliveNeighborsCreatesDeadCopy()
+    public function testTickOnDeadCellWithThreeAliveNeighborsCreatesAliveCopy()
     {
         $cell = Cell::dead();
         $newCell = $cell->tick(3);
@@ -76,7 +62,7 @@ final class CellTest extends TestCase
         $this->assertTrue($newCell->isAlive());
     }
 
-    public function testTickOnDeadCellWithOneAliveNeighborCreatesDeadCopy()
+    public function testTickOnDeadCellWithOneAliveNeighborDoesNotResurrectCell()
     {
         $cell = Cell::dead();
         $newCell = $cell->tick(1);
@@ -85,7 +71,7 @@ final class CellTest extends TestCase
         $this->assertFalse($newCell->isAlive());
     }
 
-    public function testTickOnDeadCellWithTwoAliveNeighborsCreatesDeadCopy()
+    public function testTickOnDeadCellWithTwoAliveNeighborsDoesNotResurrectCell()
     {
         $cell = Cell::dead();
         $newCell = $cell->tick(2);
@@ -94,7 +80,7 @@ final class CellTest extends TestCase
         $this->assertFalse($newCell->isAlive());
     }
 
-    public function testTickOnDeadCellWithFourAliveNeighborsCreatesDeadCopy()
+    public function testTickOnDeadCellWithFourAliveNeighborsDoesNotResurrectCell()
     {
         $cell = Cell::dead();
         $newCell = $cell->tick(4);
