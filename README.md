@@ -9,12 +9,6 @@ Simple PHP implementation with CLI visualization.
 
 ## Run
 
-In console:
-
-`docker run --rm -v $PWD:/app composer/composer start`
-
-Different matrix setups:
-
 - Random matrix
   `docker run --rm -v $PWD:/app -e MATRIX=random composer/composer start`
 - Glider gun
@@ -30,6 +24,8 @@ Different matrix setups:
 - [x] Increase cell lifetime to survive more than one generation instead of killing instantly
 - [x] Predefined seeds like Gosper's glider gun!
 - [ ] Cell colors!
+- [ ] More matrices
+- [ ] Strategy support for cell interaction
 
 ## Resources
 
